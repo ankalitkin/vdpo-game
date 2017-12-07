@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABblBMVEUAAAD/flf/qn3/Y0n/YDj/Xzz/fl3/d1n/0KX/tor/g2v/Yhb/ggz/dF3///f/YUf/TC///9j/YSL/WSX//+T/SSb/hmn/9Ij/WzX/gDL/bx//YUn/cT7/cFb/zSv/9JL/YEL/n33/f17/oVP/cUv/w2j/imX/Z0X/eU7/6XL/f1v/k2X/eFT/rY3/Zjz/nWL/13//SCr/TST/ek7/hGD/43X/l3P/wZz/qYb/5bn/hV//3K//elb/5QP//9P//3//gmv/emT/eVz/cFb/iVL/aEr/mUX/pjz/vTT/TS7/RCj/dRv/0g3/7Az/IQD//7v//67//4//lX7/iHL/82L//2H/gGH/ZVb/bFH//1D/g0z/lUv/fEf/W0H/+T//ljr/qDj/VTj/jTP/nTH/XCn/uCj/ryj/wCf/pSf/6yD/Ox3/zhj/2hP/xhP/pBL/VhH/gxD/fxD/+g3/0Qz/ZQn/nQb/ywD/xAD/pgD/fwAyttInAAAAPXRSTlMAhSH8zbemohIK/v38+/r29vTz7uzr4tvb29fT0srDvLyonpyYlZKQjH57c2xhYF5XVEtKOjU1My4rIyIbULcTSwAAAMFJREFUGNNjgAMmDQ4GBDBiYnBVQeLrCnAqhhsj+Jy8YtrMsXpwPoeOMxd/RKKhFRNUQEvdMcjZ0YuV0cQGIiAtyhzs4ODlyaZmAeabK/llOTmFubIosJuBBWTZPFNiXFyihFjYGcECrH7c0W5uCe7ekjISYAHG/KT41Fwfj2SeEmGwgL63e1pOkW+2R0ahFFjAuiCv2DcyNNMnvVIZYq1qhW2cfUCIbXmpJdRlcraB/nZ29mUGcMdrigvyicibgpgAXGEiJueYfscAAAAASUVORK5CYII=">
+  <link rel="stylesheet" style="text/css" href="res/pexeso.css" />
+  <link rel="stylesheet" style="text/css" href="res/modal.css" />
+  <script src="//api.backendless.com/sdk/js/latest/backendless.min.js"></script>
+  <title>Пожарное лото ВДПО</title>
+</head>
+<body>
+  <div id="container">
+    <div id="headline">
+      <span id="time">Время: 00:00</span>
+      <span id="count">Попытки: 0</span>
+    </div>
+    <div id="game">
+      <div class="card">
+        <div class="face front"></div>
+        <div class="face back"></div>
+      </div>
+    </div>
+  </div>
+  <!-- Fixed footer -->
+  <div id="nav">
+    <div id="nav_inside">
+      <span id="title">
+      Пожарное лото ВДПО
+      </span>
+      <div id="buttons">
+        <button id="about-open">Помощь</button>
+        <button id="new-game">Новая игра</button>
+      </div>
+    </div>
+  </div>
+  <div tabindex="-1" class="modal fade" id="results" style="display: block;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="pexeso-init">
+          <div class="modal-header">
+            <h4 class="modal-title" id="my-modal-label">Пожарное лото ВДПО</h4>
+          </div>
+          <div class="modal-body">
+            <p class="alert">
+              <strong>Поздравляем с успешным прохождением игры.
+              <strong id="newtopscoremsg" class="hide"><br>Установлен новый рекорд!</strong>
+              </strong>
+            </p>
+            <strong>
+              <strong>
+                <p>
+                  Ваше время: <span class="badge" id="timeres"></span>
+                </p>
+                <p>
+                  Количество попыток: <span class="badge" id="triesres"></span>				
+                </p>
+                <p>
+                  Рекорд: <span class="badge" id="topscore"></span>				
+                </p>
+                <p id="oldtopscoremsg" class="hide">
+                  <span>Прошлый рекорд:</span>
+                  <span id="oldtopscore"></span>
+                </p>
+              </strong>
+            </strong>
+          </div>
+          <strong>
+            <strong>
+              <div class="modal-footer">
+                <div id="markcontainer">
+                  <span id="marktext">Ваша оценка: &nbsp;</span>
+                  <span id="mark"></span>
+                </div>
+                <button class="btn btn-primary" id="renew-game" type="button">
+                Новая игра
+                </button>
+              </div>
+            </strong>
+          </strong>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div tabindex="-1" class="modal fade" id="about" style="display: block;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="pexeso-init">
+          <div class="modal-header">
+            <h4 class="modal-title" id="my-modal-label">Пожарное лото ВДПО</h4>
+          </div>
+          <div class="modal-body text-about">
+            <p>
+              На игровом поле рубашкой вверх расположены 20 карт с картинками. 
+              При нажатии карты переворачиваются. Разные карты возвращаются в исходное положение, одинаковые - исчезают.
+            </p>
+            <p>
+              Цель игры - как можно быстрее найти все карты с одинаковыми картинками. Лучший результат сохраняется между играми.
+            </p>
+            <div id="stat" style="/*display: none;*/" class="hide">
+              <div>
+                Партий начато: <span class="badge" id="gamesPlayedAbout"></span>
+                <br>
+                Партий завершено: <span class="badge" id="gamesEndedAbout"></span>
+              </div>
+              <div>
+                Всего нажатий: <span class="badge" id="clicksTotalAbout"></span>
+                <br>
+                Общее время в игре: <span class="badge" id="timeTotalAbout"></span>
+              </div>
+            </div>
+            <p style="text-align: center">
+              Лучший результат: <span class="badge" id="topScoreAbout" title="Нажмите дважды, чтобы просмотреть статистику"></span>
+            </p>
+            <hr>
+            <div id="authors">
+              <p class="bold">
+                На конкурс. Авторы игры:
+              </p>
+              <p>
+                Разработка и дизайн: <b>Калиткин Андрей Вячеславович</b>
+              </p>
+              <p>
+                Графика: <b>Куваева Ирина Игоревна</b>
+              </p>
+              <p class="bold">
+                Лиски, 2017 год
+              </p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div id="actionlinks">
+              <a id="clearRecordLink">(Сбросить рекорды)</a>	
+              <a id="clearStatLink" class="hide">(Сбросить статистику)</a>
+            </div>
+            <button class="btn btn-primary" id="about-close" type="button">
+            Закрыть
+            </button>
+          </div>
+          </strong>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="res/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="res/pexeso.js"></script>
+</body>
+</html>
